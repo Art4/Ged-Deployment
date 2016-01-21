@@ -9,6 +9,7 @@
   },
   "scripts": {
     "init": "grunt init",
+    "build": "grunt build",
     "deploy": "grunt deploy"
   }
 }

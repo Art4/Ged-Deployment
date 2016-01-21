@@ -4,6 +4,12 @@ module.exports = function(grunt) {
 		exec: {
 			gitclone: {
 				command: 'git clone https://github.com/Art4/Ged.git src'
+			},
+			bumpversion: {
+				command: function() {
+					var pkg = grunt.file.readJSON('src/package.json');
+					return 'echo '+pkg.version+'> latest_release';
+				}
 			}
 		},
 		compress: {
@@ -37,9 +43,12 @@ module.exports = function(grunt) {
 		});
 	});
 
+	// Build
+	grunt.registerTask('build', ['compress']);
+
 	// Deployment
-	grunt.registerTask('deploy', ['compress']);
+	grunt.registerTask('deploy', ['compress', 'exec:bumpversion']);
 
 	// Init
-	grunt.registerTask('init', ['exec']);
+	grunt.registerTask('init', ['exec:gitclone']);
 };
