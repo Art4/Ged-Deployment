@@ -25,12 +25,35 @@ module.exports = function(grunt) {
 					{expand: true, cwd: 'src/', src: ['**/*'], dest: '/'}
 				]
 			}
+		},
+		markdown: {
+			changelog: {
+				files: [
+					{
+						expand: true,
+						src: 'CHANGELOG.md',
+						cwd: 'src/',
+						dest: 'docs/',
+						ext: '.html'
+					},
+					{
+						expand: true,
+						src: 'README.md',
+						cwd: 'src/',
+						dest: 'docs/',
+						ext: '.html'
+					}
+				],
+				options: {
+				}
+			}
 		}
 	});
 
 	// Load the plugin that provides the "exec" task.
 	grunt.loadNpmTasks('grunt-exec');
 	grunt.loadNpmTasks('grunt-contrib-compress');
+	grunt.loadNpmTasks('grunt-markdown');
 
 	// Default task(s).
 	grunt.registerTask('bower', 'install the frontend dependencies', function() {
@@ -47,7 +70,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', ['compress']);
 
 	// Deployment
-	grunt.registerTask('deploy', ['compress', 'exec:bumpversion']);
+	grunt.registerTask('deploy', ['compress', 'exec:bumpversion', 'markdown:changelog']);
 
 	// Init
 	grunt.registerTask('init', ['exec:gitclone']);
