@@ -45,27 +45,37 @@ module.exports = function(grunt) {
 					}
 				],
 				options: {
+					template: 'docs/template/template.html',
+					preCompile: function(src, context) {
+						// Replace License und Chandlog link
+						src = src.split('](LICENSE)').join('](https://github.com/Art4/Ged/blob/master/LICENSE)');
+						src = src.split('](CHANGELOG.md)').join('](CHANGELOG.html)');
+						return src;
+					},
+					postCompile: function(src, context) {
+						// Highlight navbar items
+						if ( context.title === 'Readme' ) {
+							src = src.replace('<li><a href="README.html">Readme</a></li>', '<li class="active"><a href="README.html">Readme</a></li>');
+						}
+						else if ( context.title === 'Changelog' ) {
+							src = src.replace('<li><a href="CHANGELOG.html">Changelog</a></li>', '<li class="active"><a href="CHANGELOG.html">Changelog</a></li>');
+						}
+						return src;
+					},
+					templateContext: {},
+					contextBinder: true,
+					contextBinderMark: '@@@'
 				}
 			}
 		}
 	});
 
-	// Load the plugin that provides the "exec" task.
+	// Load the plugins
 	grunt.loadNpmTasks('grunt-exec');
 	grunt.loadNpmTasks('grunt-contrib-compress');
 	grunt.loadNpmTasks('grunt-markdown');
 
-	// Default task(s).
-	grunt.registerTask('bower', 'install the frontend dependencies', function() {
-		var exec = require('child_process').exec;
-		var cb = this.async();
-		//exec('bower install', {}, function(err, stdout, stderr) {
-		exec('bower install', {}, function(err, stdout, stderr) {
-			console.log(stdout);
-			cb();
-		});
-	});
-
+	// Tasks:
 	// Build
 	grunt.registerTask('build', ['compress']);
 
