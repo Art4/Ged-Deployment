@@ -52,16 +52,6 @@ module.exports = function(grunt) {
 						src = src.split('](CHANGELOG.md)').join('](CHANGELOG.html)');
 						return src;
 					},
-					postCompile: function(src, context) {
-						// Highlight navbar items
-						if ( context.title === 'Readme' ) {
-							src = src.replace('<li><a href="README.html">Readme</a></li>', '<li class="active"><a href="README.html">Readme</a></li>');
-						}
-						else if ( context.title === 'Changelog' ) {
-							src = src.replace('<li><a href="CHANGELOG.html">Changelog</a></li>', '<li class="active"><a href="CHANGELOG.html">Changelog</a></li>');
-						}
-						return src;
-					},
 					templateContext: {},
 					contextBinder: true,
 					contextBinderMark: '@@@'
