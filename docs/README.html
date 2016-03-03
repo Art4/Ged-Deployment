@@ -51,7 +51,7 @@
 12345-rB
 </code></pre><h3 id="endung">Endung</h3>
 <p>In den Optionen von Ged ist definiert, nach welcher Dateiendung gesucht werden soll. Soll von dieser Einstellung abgewichen werden, kann die Dateiendung mit <code>.&lt;Dateiendung&gt;</code> explizit angegeben werden.</p>
-<p>Die Dateiendung ist eine Zeichenkette mit mindestens einem Zeichen. Die am häufigsten verwendeten Dateiendungen sind <code>pdf</code> für PDF-Dateien, <code>dwg</code> für AutoCAD-Dateien oder <code>dft</code> für Solid Edge Zeichnugen.</p>
+<p>Die Dateiendung ist eine Zeichenkette mit mindestens einem Zeichen. Die am häufigsten verwendeten Dateiendungen sind <code>pdf</code> für PDF-Dateien, <code>dft</code> für Solid Edge Zeichnugen oder <code>dwg</code> für AutoCAD-Dateien.</p>
 <h4 id="beispiele">Beispiele</h4>
 <pre><code>12345.pdf
 12345.tiff
@@ -71,7 +71,7 @@
 12345-r1.pdf o
 </code></pre><h2 id="befehle">Befehle</h2>
 <h3 id="-o-open"><code>o</code> - open</h3>
-<p>Sucht nach der neusten Revison einer Zeichnung und öffnet diese. Wenn die Datei nicht gefunden wurde, wird die Meldung <code>&lt;Zeichnungsnummer&gt;.dft nicht gefunden</code> ausgegeben.</p>
+<p>Sucht nach der neusten Revison einer Zeichnung und öffnet diese. Wenn die Datei nicht gefunden wurde, wird der Explorer an der Stelle geöffnet, an der die eingegebene Zeichnungsnummer erwartet wird und selektiert die am besten passenste Datei.</p>
 <p>Der Befehl open ist der Standard. Wird kein Befehl angegeben, wird die gefundene Zeichnung automatisch geöffnet.</p>
 <h4 id="beispiel">Beispiel</h4>
 <pre><code>12345 o
@@ -102,8 +102,8 @@
 <pre><code>12345 f
 </code></pre><h3 id="-c-dateien-bereinigen"><code>c</code> - Dateien bereinigen</h3>
 <p>Setzt bei der vorherige Revision der gesuchten Zeichnung die DFT-Datei auf Schreibschutz und löscht die dazugehörige PDF-Datei. Vor dem Löschen der PDF erscheint ein Warnhinweis mit dem zu löschenden Dateinamen, der erst vom Anwender bestätigt werden muss. Bricht der Anwender das Löschen ab, wird nur der Schreibschutz bei der DFT-Datei gesetzt.</p>
-<h4 id="beispiel-1">Beispiel 1</h4>
-<p>Angenommen es existieren die folgenden Dateien:</p>
+<h4 id="beispiel">Beispiel</h4>
+<p>Angenommen, es existieren die folgenden Dateien:</p>
 <ul>
 <li>12345-R0.dft</li>
 <li>12345-R0.pdf</li>
